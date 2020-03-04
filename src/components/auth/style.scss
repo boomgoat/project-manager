@@ -1,0 +1,14 @@
+form {
+  padding: 2em;
+  margin-top: 5em;
+  border-radius: 5px;
+
+  .input-field {
+    margin-top: 2em;
+    padding-top: 1em;
+
+    input {
+      padding-left: 1em !important;
+    }
+  }
+}
