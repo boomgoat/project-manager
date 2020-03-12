@@ -18,6 +18,7 @@ const ProjectDetails = props => {
           content={project.projectContent}
           id={postId}
           name={project.authorFirstName}
+          date={project.createdAt}
         />
       </div>
     );
