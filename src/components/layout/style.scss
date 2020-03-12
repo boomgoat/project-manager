@@ -1,0 +1,29 @@
+.overlay {
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  z-index: 5;
+  overflow-x: hidden;
+  position: fixed;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.overlay:before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+.check-idle {
+  background: none;
+  color: white;
+  padding: 15px;
+  border: 1px solid white;
+  display: inline-block;
+  vertical-align: middle;
+  width: 300px;
+}
