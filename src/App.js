@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 // Custom Function Imports
 
 // Test Imports
-import IdleOverlay from "./components/layout/IdleOverlay";
+// import IdleOverlay from "./components/layout/IdleOverlay";
 
 const App = props => {
   const [isIdle, setIsIdle] = useState(false);
@@ -51,17 +51,14 @@ const App = props => {
     const goInactive = () => {
       // do something
       finalTimer = window.setTimeout(goInactiveFinal, 2000);
-      console.log("First Timeout: Second Timer Fired", finalTimer);
     };
 
     const goInactiveFinal = () => {
-      console.log("Second Timeout");
       renderOverlay();
     };
 
     const goActive = () => {
       // do something
-      console.log("Timer Reset");
       startTimer();
     };
 
@@ -73,12 +70,22 @@ const App = props => {
     console.log("isIdle: ", isIdle);
   };
 
+  const activeClickHandler = () => {
+    setIsIdle(false);
+  };
+
   const { auth } = props;
 
   if (!auth.isLoaded) return <span></span>;
   return (
     <BrowserRouter>
-      {isIdle ? <IdleOverlay /> : null}
+      {isIdle ? (
+        <div className="overlay">
+          <button className="check-idle" onClick={activeClickHandler}>
+            Are You Still There?
+          </button>
+        </div>
+      ) : null}
       <div className="App grey darken-4 white-text">
         <Navbar />
         <Switch>
