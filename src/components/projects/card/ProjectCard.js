@@ -1,19 +1,19 @@
 import React from "react";
-import { CardTitle } from "./cardContents/title";
-import { PostDetails } from "./cardContents/PostDetails";
+import moment from "moment";
 
 export const ProjectCard = props => {
-  console.log("card =>", props.project);
   // const time = props.project.createdAt.toDate();
+  const { project } = props;
   return (
     <div className="card z-depth-0 project-summary">
       <div className="card-content grey-text text-darken-3">
-        <CardTitle title={props.project.title} />
-        <PostDetails
-          cardType={props.cardType}
-          // time={time}
-          name={props.project.authorFirstName}
-        />
+        <span className="card-title">{project.title}</span>
+        <p className="author-name">
+          Posted By {project.authorFirstName} {project.authorLastName}
+        </p>
+        <p className="date-posted">
+          {moment(project.createdAt.toDate()).calendar()}
+        </p>
       </div>
     </div>
   );
