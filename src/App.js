@@ -15,10 +15,12 @@ import { connect } from "react-redux";
 // Custom Function Imports
 
 // Test Imports
-// import IdleOverlay from "./components/layout/IdleOverlay";
+import IdleOverlay from "./components/layout/IdleOverlay";
 
 const App = props => {
   const [isIdle, setIsIdle] = useState(false);
+
+  const { auth } = props;
 
   useEffect(() => {
     let initialTimer;
@@ -62,7 +64,9 @@ const App = props => {
       startTimer();
     };
 
-    setup();
+    if (auth.uid) {
+      setup();
+    }
   });
 
   const renderOverlay = () => {
@@ -74,18 +78,10 @@ const App = props => {
     setIsIdle(false);
   };
 
-  const { auth } = props;
-
   if (!auth.isLoaded) return <span></span>;
   return (
     <BrowserRouter>
-      {isIdle ? (
-        <div className="overlay">
-          <button className="check-idle" onClick={activeClickHandler}>
-            Are You Still There?
-          </button>
-        </div>
-      ) : null}
+      {isIdle && auth.uid ? <IdleOverlay func={activeClickHandler} /> : null}
       <div className="App grey darken-4 white-text">
         <Navbar />
         <Switch>
